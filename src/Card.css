@@ -1,0 +1,17 @@
+div.card {
+  height: 60px;
+  width: 45px;
+  background-size: cover;
+  border: gray solid 0.5px;
+}
+
+div.card-Hearts {
+  color: red;
+}
+
+div.card-Diamonds {
+  color: red;
+}
+div.card.conceal {
+  background-image: url('./CardBack.png');
+}

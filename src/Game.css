@@ -1,0 +1,8 @@
+div.avatar {
+  height: 70px;
+  width: 70px; 
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 3px solid
+}
