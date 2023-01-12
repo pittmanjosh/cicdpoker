@@ -2,7 +2,6 @@ export default function Quips(props) {
   return (
     <div>
       <p>{phrase(props)}</p>
-      {console.log(process.env)}
     </div>
   );
 }

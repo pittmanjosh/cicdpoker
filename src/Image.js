@@ -3,7 +3,7 @@ export default function Image({imgUrl,userClass}) {
     <div 
       xs="auto"
       className={`avatar ${userClass}`} 
-      style={{backgroundImage:`url(${imgUrl})`}}
+      style={{backgroundImage:`url(${process.env.NODE_ENV == 'production' ? '/cicdpoker'}${imgUrl})`}}
     />
   );
 }
