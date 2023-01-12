@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/cicdpoker/static/css/main.9ca52969.chunk.css",
+    "main.js": "/cicdpoker/static/js/main.b0f23131.chunk.js",
+    "main.js.map": "/cicdpoker/static/js/main.b0f23131.chunk.js.map",
+    "runtime-main.js": "/cicdpoker/static/js/runtime-main.1e09c802.js",
+    "runtime-main.js.map": "/cicdpoker/static/js/runtime-main.1e09c802.js.map",
+    "static/css/2.9082872e.chunk.css": "/cicdpoker/static/css/2.9082872e.chunk.css",
+    "static/js/2.542e4594.chunk.js": "/cicdpoker/static/js/2.542e4594.chunk.js",
+    "static/js/2.542e4594.chunk.js.map": "/cicdpoker/static/js/2.542e4594.chunk.js.map",
+    "static/js/3.43b602f6.chunk.js": "/cicdpoker/static/js/3.43b602f6.chunk.js",
+    "static/js/3.43b602f6.chunk.js.map": "/cicdpoker/static/js/3.43b602f6.chunk.js.map",
+    "index.html": "/cicdpoker/index.html",
+    "static/css/2.9082872e.chunk.css.map": "/cicdpoker/static/css/2.9082872e.chunk.css.map",
+    "static/css/main.9ca52969.chunk.css.map": "/cicdpoker/static/css/main.9ca52969.chunk.css.map",
+    "static/js/2.542e4594.chunk.js.LICENSE.txt": "/cicdpoker/static/js/2.542e4594.chunk.js.LICENSE.txt",
+    "static/media/Card.css": "/cicdpoker/static/media/CardBack.1f162bd8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1e09c802.js",
+    "static/css/2.9082872e.chunk.css",
+    "static/js/2.542e4594.chunk.js",
+    "static/css/main.9ca52969.chunk.css",
+    "static/js/main.b0f23131.chunk.js"
+  ]
+}
