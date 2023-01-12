@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cicdpoker/static/css/main.9ca52969.chunk.css",
-    "main.js": "/cicdpoker/static/js/main.b0f23131.chunk.js",
-    "main.js.map": "/cicdpoker/static/js/main.b0f23131.chunk.js.map",
+    "main.js": "/cicdpoker/static/js/main.1087a18d.chunk.js",
+    "main.js.map": "/cicdpoker/static/js/main.1087a18d.chunk.js.map",
     "runtime-main.js": "/cicdpoker/static/js/runtime-main.1e09c802.js",
     "runtime-main.js.map": "/cicdpoker/static/js/runtime-main.1e09c802.js.map",
     "static/css/2.9082872e.chunk.css": "/cicdpoker/static/css/2.9082872e.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.9082872e.chunk.css",
     "static/js/2.542e4594.chunk.js",
     "static/css/main.9ca52969.chunk.css",
-    "static/js/main.b0f23131.chunk.js"
+    "static/js/main.1087a18d.chunk.js"
   ]
 }
