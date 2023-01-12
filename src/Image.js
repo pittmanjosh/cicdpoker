@@ -1,9 +1,13 @@
-export default function Image({imgUrl,userClass}) {
+export default function Image({ imgUrl, userClass }) {
   return (
-    <div 
+    <div
       xs="auto"
-      className={`avatar ${userClass}`} 
-      style={{backgroundImage:`url(${process.env.NODE_ENV == 'production' ? '/cicdpoker'}${imgUrl})`}}
+      className={`avatar ${userClass}`}
+      style={{
+        backgroundImage: `url(${
+          process.env.NODE_ENV == "production" ? "/cicdpoker" : ""
+        }${imgUrl})`,
+      }}
     />
   );
 }
