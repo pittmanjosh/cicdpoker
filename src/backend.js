@@ -1,125 +1,120 @@
 import { Card } from "./Card";
 
-const suits  = [
-  'Spades', 
-  'Diamonds', 
-  'Clubs', 
-  'Hearts'
-];
+const suits = ["Spades", "Diamonds", "Clubs", "Hearts"];
 const values = [
-  'Ace', 
-  '2', 
-  '3', 
-  '4', 
-  '5', 
-  '6', 
-  '7', 
-  '8', 
-  '9', 
-  '10', 
-  'Jack',
-  'Queen',
-  'King'
+  "Ace",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "Jack",
+  "Queen",
+  "King",
 ];
 const quants = {
-  'Ace': 13, 
-  '2': 1, 
-  '3': 2, 
-  '4': 3, 
-  '5': 4, 
-  '6': 5, 
-  '7': 6, 
-  '8': 7, 
-  '9': 8, 
-  '10': 9, 
-  'Jack': 10, 
-  'Queen': 11, 
-  'King': 12
+  Ace: 13,
+  2: 1,
+  3: 2,
+  4: 3,
+  5: 4,
+  6: 5,
+  7: 6,
+  8: 7,
+  9: 8,
+  10: 9,
+  Jack: 10,
+  Queen: 11,
+  King: 12,
 };
 export const symbols = {
-  'Spades': `\u2660`, 
-  'Diamonds': `\u2666`, 
-  'Clubs': `\u2663`, 
-  'Hearts':`\u2665`
+  Spades: `\u2660`,
+  Diamonds: `\u2666`,
+  Clubs: `\u2663`,
+  Hearts: `\u2665`,
 };
 const hands = [
-  'straight flush', 
-  'wheel flush', 
-  'four of a kind', 
-  'full house', 
-  'flush', 
-  'straight', 
-  'three of a kind', 
-  'two pair', 
-  'one pair', 
-  'high card'
+  "straight flush",
+  "wheel flush",
+  "four of a kind",
+  "full house",
+  "flush",
+  "straight",
+  "three of a kind",
+  "two pair",
+  "one pair",
+  "high card",
 ];
 
 export const characters = [
   {
-    name: 'Alex Trebek',
-    url: '/images/alexTrebek.jpg'
+    name: "Alex Trebek",
+    url: "/images/alexTrebek.jpg",
   },
   {
     name: 'Buddy "The Elf"',
-    url: '/images/buddyTheElf.jpg'
+    url: "/images/buddyTheElf.jpg",
   },
   {
-    name: 'Brennan Huff',
-    url: '/images/brennanHuff.jpg'
+    name: "Brennan Huff",
+    url: "/images/brennanHuff.jpg",
   },
   {
-    name: 'Chazz Michael Michaels',
-    url: '/images/chazzMichaelMichaels.jpg'
+    name: "Chazz Michael Michaels",
+    url: "/images/chazzMichaelMichaels.jpg",
   },
   {
-    name: 'Chad Smith',
-    url: '/images/chadSmith.jpg'
+    name: "Chad Smith",
+    url: "/images/chadSmith.jpg",
   },
   {
-    name: 'Detective Allen Gamble',
-    url: '/images/detectiveAllenGamble.jpeg'
+    name: "Detective Allen Gamble",
+    url: "/images/detectiveAllenGamble.jpeg",
   },
   {
     name: 'Frank "The Tank" Richard',
-    url: '/images/frankTheTank.jpg'
+    url: "/images/frankTheTank.jpg",
   },
   {
-    name: 'Gator',
-    url: '/images/gator.jpg'
+    name: "Gator",
+    url: "/images/gator.jpg",
   },
   {
-    name: 'Harold Crick',
-    url: '/images/haroldCrick.jpg'
+    name: "Harold Crick",
+    url: "/images/haroldCrick.jpg",
   },
   {
-    name: 'Jackie Moon',
-    url: '/images/jackieMoon.jpg'
+    name: "Jackie Moon",
+    url: "/images/jackieMoon.jpg",
   },
   {
-    name: 'Jacobim Mugatu',
-    url: '/images/jacobimMugatu.jpg'
+    name: "Jacobim Mugatu",
+    url: "/images/jacobimMugatu.jpg",
   },
   {
-    name: 'Janet Reno',
-    url: '/images/janetReno.jpg'
+    name: "Janet Reno",
+    url: "/images/janetReno.jpg",
   },
   {
-    name: 'Lars Erickssong',
-    url: '/images/larsErickssong.jpg'
+    name: "Lars Erickssong",
+    url: "/images/larsErickssong.jpg",
   },
   {
-    name: 'Mustafa',
-    url: '/images/mustafa.jpg'
+    name: "Mustafa",
+    url: "/images/mustafa.jpg",
   },
   {
-    name: 'Ricky Bobby',
-    url: '/images/rickyBobby.jpg'
+    name: "Ricky Bobby",
+    url: "/images/rickyBobby.jpg",
   },
   {
-    name: 'Ron Burgundy',
-    url: '/images/ronBurgundy.jpeg'
-  }
+    name: "Ron Burgundy",
+    url: "/images/ronBurgundy.jpeg",
+  },
 ];
 
 class Player {
@@ -129,20 +124,21 @@ class Player {
     this.wallet = 5000;
     this.hand = new Hand();
     this.position = position;
+    this.isUser = false;
   }
 
   bestHand(communityCards) {
-    if (this.hand.pocket === undefined) throw new Error('Player not dealt');
+    if (this.hand.pocket === undefined) throw new Error("Player not dealt");
 
     const pocket = this.hand.pocket;
     const availableCards = [...pocket, ...communityCards];
-    const sortedCards    = this.sortThese(availableCards);
-    const iterations     = this.iterator(sortedCards);
-    iterations.forEach(x=>x.evaluate());
+    const sortedCards = this.sortThese(availableCards);
+    const iterations = this.iterator(sortedCards);
+    iterations.forEach((x) => x.evaluate());
     iterations.sort(rankHands);
     const bestIteration = iterations.shift();
-    
-    this.hand = {...bestIteration,pocket};
+
+    this.hand = { ...bestIteration, pocket };
     this.hand.pocket = pocket;
   }
 
@@ -153,12 +149,12 @@ class Player {
     return sortedCards;
   }
 
-  cardSort(a,b) {
+  cardSort(a, b) {
     const compare = quants[b.value] - quants[a.value];
     const suitCompare = suits.indexOf(b.suit) - suits.indexOf(a.suit);
 
     if (compare) return compare;
-    
+
     return suitCompare;
   }
 
@@ -183,116 +179,120 @@ class Player {
 }
 
 export class User extends Player {
+  constructor(position, character) {
+    super(position, character);
+    this.isUser = true;
+  }
 }
 
 export function getPlayers(numOfPlayers = 5) {
   let players = [];
   const indexOfUser = Math.floor(Math.random() * numOfPlayers);
 
-  const fetchCharacter = ()=>{
+  const fetchCharacter = () => {
     let index = Math.floor(Math.random() * characters.length);
     return characters[index];
   };
 
-  const playerOrUser = (index,character)=>{
+  const playerOrUser = (index, character) => {
     var Type;
-    (index === indexOfUser) ? Type = User : Type = Player;
+    index === indexOfUser ? (Type = User) : (Type = Player);
 
     return new Type(index, character);
-  }
+  };
 
   for (let i = 0; i < numOfPlayers; i++) {
     let target;
     while (!target) {
       let x = fetchCharacter();
-      if (players.every(y=>y.name !== x.name)) {
-        target = playerOrUser(i,x);
+      if (players.every((y) => y.name !== x.name)) {
+        target = playerOrUser(i, x);
       }
     }
     players.push(target);
   }
-
 
   return [players, players[indexOfUser].name];
 }
 
 export function dealPocket(gameState) {
   const deck = createDeck();
-  const state = {...gameState};
+  const state = { ...gameState };
 
-  const pockets = state.players.map(x=>[]);
+  const pockets = state.players.map((x) => []);
 
   for (let i = 0; i < 2; i++) {
-    pockets.forEach(x=>x.push(deck.pop()));
+    pockets.forEach((x) => x.push(deck.pop()));
   }
-  
-  state.players.forEach((x,i)=>{
+
+  state.players.forEach((x, i) => {
     x.hand.pocket = pockets[i];
   });
 
-  return {...state,deck};
+  return { ...state, deck };
 }
 
 export function dealFlop(gameState) {
-  const state = {...gameState};
+  const state = { ...gameState };
   const deck = [...state.deck];
   const flop = [];
   for (let i = 0; i < 3; i++) {
-    flop.push(deck.pop())
+    flop.push(deck.pop());
   }
 
-  return {...state,deck,community: {flop}}
+  return { ...state, deck, community: { flop } };
 }
 
-export function dealTurnOrRiver(gameState,turnOrRiverString) {
-  const state = {...gameState};
+export function dealTurnOrRiver(gameState, turnOrRiverString) {
+  const state = { ...gameState };
   const deck = [...state.deck];
-  const holder = [deck.pop()]
-  const community = {...state.community, [turnOrRiverString]: holder};
+  const holder = [deck.pop()];
+  const community = { ...state.community, [turnOrRiverString]: holder };
 
-  return {...state,deck,community}
-
+  return { ...state, deck, community };
 }
 
 export function evaluateGame(gameState) {
-  const state = {...gameState};
-  const {flop,turn,river} = state.community;
-  const community = [...flop,...turn,...river];
+  const state = { ...gameState };
+  const { flop, turn, river } = state.community;
+  const community = [...flop, ...turn, ...river];
   // evaluation is buggy always evaluating to high card
-  state.players.forEach(x=>x.bestHand(community));
-  const playerList = [...state.players]
-  const ranking = playerList.sort(rankExtractedHands)
-  const roundRank = ranking.map(x=>{
-    return (
-      {
-        name: x.name,
-        cards: x.hand[0].map(x=>x.name),
-        hand: x.hand.hand
-      }
-    );
+  state.players.forEach((x) => x.bestHand(community));
+  const playerList = [...state.players];
+  const ranking = playerList.sort(rankExtractedHands);
+  const roundRank = ranking.map((x) => {
+    return {
+      name: x.name,
+      cards: x.hand[0].map((x) => x.name),
+      hand: x.hand.hand,
+    };
   });
-  return {...state,roundRank};
+  return { ...state, roundRank };
 }
 
 export function nextRound(gameState) {
-  const state = {...gameState};
+  const state = { ...gameState };
   const winner = state.roundRank[0];
-  (state.records) ? state.records = [...state.records,winner] : state.records = [winner];
+  state.records
+    ? (state.records = [...state.records, winner])
+    : (state.records = [winner]);
   const propsForDeletion = ["deck", "community", "roundRank"];
-  propsForDeletion.forEach(x=>{delete state[x];});
-  state.players.forEach(x=>{
+  propsForDeletion.forEach((x) => {
+    delete state[x];
+  });
+  state.players.forEach((x) => {
     x.hand = new Hand();
   });
   console.log(state);
   return state;
 }
-function rankExtractedHands(playerA,playerB) {
-  return rankHands(playerA.hand,playerB.hand)
+function rankExtractedHands(playerA, playerB) {
+  return rankHands(playerA.hand, playerB.hand);
 }
 
-function rankHands(handA,handB) {
+function rankHands(handA, handB) {
   const handComparison = hands.indexOf(handA.hand) - hands.indexOf(handB.hand);
-  
+
   if (handComparison !== 0) return handComparison;
 
   let cardComparison = 0;
@@ -301,8 +301,8 @@ function rankHands(handA,handB) {
   while (i < 4 && cardComparison === 0) {
     cardComparison = quants[handB[0][i].value] - quants[handA[0][i].value];
     i++;
-  }   
-      
+  }
+
   return cardComparison;
 }
 
@@ -311,10 +311,10 @@ function createDeck() {
 
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < values.length; j++) {
-      unshuffled.push(new Card(values[j],suits[i]));
+      unshuffled.push(new Card(values[j], suits[i]));
     }
   }
-  const unshuffledDeck = (new Deck(...unshuffled));
+  const unshuffledDeck = new Deck(...unshuffled);
 
   return unshuffledDeck.shuffle();
 }
@@ -325,14 +325,8 @@ function randNumInRange(range) {
 
 export class Deck extends Array {
   shuffle() {
-    this.washFiveTimes()
-        .cut()
-        .riffle()
-        .box()
-        .washFiveTimes()
-        .cut()
-        .riffle();
-    
+    this.washFiveTimes().cut().riffle().box().washFiveTimes().cut().riffle();
+
     return this;
   }
 
@@ -344,7 +338,7 @@ export class Deck extends Array {
     }
     while (original.length > 0) {
       let randomIndex = Math.floor(Math.random() * original.length);
-      clean.push(original.splice(randomIndex,1)[0]);
+      clean.push(original.splice(randomIndex, 1)[0]);
     }
     while (clean.length > 0) {
       this.push(clean.pop());
@@ -361,17 +355,18 @@ export class Deck extends Array {
   }
 
   cut() {
-    const randSplit = (this.length / 2) - 2 + randNumInRange(5);
+    const randSplit = this.length / 2 - 2 + randNumInRange(5);
 
     for (let i = 0; i < randSplit; i++) {
       this.push(this.shift());
     }
-    if (this.length > 52 || this.length < 52) throw new Error(`cut ${this.length}`);
+    if (this.length > 52 || this.length < 52)
+      throw new Error(`cut ${this.length}`);
 
     return this;
   }
 
-  //Empties deck array into two halves with split(), they are poured back 
+  //Empties deck array into two halves with split(), they are poured back
   //into the deck with varying degrees of slop. Returns 'this'
   riffle() {
     let [firstHalf, secondHalf] = this.split();
@@ -381,7 +376,8 @@ export class Deck extends Array {
       this.riffler(secondHalf);
     }
 
-    if (this.length > 52 || this.length < 52) throw new Error(`riffle ${this.length}`);
+    if (this.length > 52 || this.length < 52)
+      throw new Error(`riffle ${this.length}`);
 
     return this;
   }
@@ -394,12 +390,12 @@ export class Deck extends Array {
     for (let i = 0; i < randSplit; i++) {
       otherHalf.push(this.shift());
     }
-    
+
     let clean = [];
     while (this.length > 0) {
       clean.push(this.pop());
     }
-    
+
     return [otherHalf, clean];
   }
 
@@ -411,10 +407,9 @@ export class Deck extends Array {
       if (probability > 0.9 && half.length > 1) {
         this.push(half.pop());
         this.push(half.pop());
-      } 
-      else if (probability > 0.75 && half.length > 0) {
+      } else if (probability > 0.75 && half.length > 0) {
         this.push(half.pop());
-      } 
+      }
     }
   }
 
@@ -423,26 +418,27 @@ export class Deck extends Array {
     let deck = this;
     let temp = [];
 
-    while(deck.length > 0) {
+    while (deck.length > 0) {
       const max = deck.length;
       let randLength = Math.floor(Math.random() * 7) + 10;
-    
+
       if (max < randLength) randLength = max;
-    
-      let target = deck.length - randLength;        
-      
+
+      let target = deck.length - randLength;
+
       for (let i = 0; i < randLength; i++) {
         temp.push(deck.splice(target, 1)[0]);
       }
     }
-    
+
     while (temp.length > 0) deck.push(temp.shift());
-    if (this.length > 52 || this.length < 52) throw new Error(`box ${this.length}`);
+    if (this.length > 52 || this.length < 52)
+      throw new Error(`box ${this.length}`);
     return this;
   }
 }
 
-class Hand extends Array{
+class Hand extends Array {
   //Evaluates sorted hand and formats appropriately
   evaluate() {
     const SWF = this.straightWheelFlush();
@@ -450,7 +446,7 @@ class Hand extends Array{
     if (SWF) {
       this.hand = SWF;
       return;
-    };
+    }
 
     const multi = this.tupler();
 
@@ -467,21 +463,21 @@ class Hand extends Array{
     const hand = this[0];
     const isFlush = hand.every(this.flush);
     const ruler = hand.map(this.straight);
-    const isStraight = ruler.every(x=>x);
+    const isStraight = ruler.every((x) => x);
     let isWheel;
 
-    (isStraight) ? isWheel = false : isWheel = this.wheel(ruler);
+    isStraight ? (isWheel = false) : (isWheel = this.wheel(ruler));
 
     if (isFlush) {
-      if (isStraight) return 'straight flush';
-      if (isWheel)    return 'wheel flush'
+      if (isStraight) return "straight flush";
+      if (isWheel) return "wheel flush";
 
-      return 'flush';
+      return "flush";
     }
 
-    if (isStraight) return 'straight';
-    if (isWheel)    return 'wheel';
-    
+    if (isStraight) return "straight";
+    if (isWheel) return "wheel";
+
     return false;
   }
 
@@ -490,15 +486,15 @@ class Hand extends Array{
     const bounds = arr.length - 2;
 
     if (index <= bounds) {
-      return (x.suit === arr[index + 1].suit);
+      return x.suit === arr[index + 1].suit;
     }
-        
+
     return true;
   }
 
   //Evaluates for our definition of straight for '.every()' of an array
   straight(x, index, arr) {
-    const bounds = arr.length - 2;            //index of next to last value
+    const bounds = arr.length - 2; //index of next to last value
 
     if (index > bounds) {
       return true;
@@ -508,22 +504,22 @@ class Hand extends Array{
     const b = arr[index + 1];
     const c = quants[b.value];
 
-    return (a === (c + 1));
+    return a === c + 1;
   }
 
   // Returns boolean if hand is a wheel and reorders hand if true
   wheel(ruler) {
     let isWheel;
     const hand = this[0];
-    const possible = ((hand[0].value === 'A') && (hand[1].value === '5'));
-    
+    const possible = hand[0].value === "A" && hand[1].value === "5";
+
     if (possible) {
       ruler.shift();
-      isWheel = ruler.every(x=>x);
+      isWheel = ruler.every((x) => x);
 
       if (isWheel) {
         hand.push(hand.shift());
-        
+
         return true;
       }
     }
@@ -538,51 +534,51 @@ class Hand extends Array{
     temp.pop();
     const first = temp.indexOf(true);
 
-    if (first < 0) return 'high card';
+    if (first < 0) return "high card";
 
-    let count = temp.filter((x) => (x === true)).length;
+    let count = temp.filter((x) => x === true).length;
 
     if (count === 1) {
       const pair = hand.splice(first, 2);
       hand.unshift(pair[1]);
       hand.unshift(pair[0]);
 
-      return 'one pair';
+      return "one pair";
     }
-    
+
     const rev = temp.slice();
     rev.reverse();
     const last = rev.indexOf(true);
     const lastIndex = Math.abs(last - 3);
-    
-    if (count === 3){
-      if (temp[0] && temp[3]){
+
+    if (count === 3) {
+      if (temp[0] && temp[3]) {
         if (temp[2]) {
           hand.push(hand.shift());
           hand.push(hand.shift());
         }
-        return 'full house';
+        return "full house";
       }
-      
+
       if (temp[3]) {
         hand.push(hand.shift());
       }
 
-      return 'four of a kind';
+      return "four of a kind";
     }
-     
+
     if (count === 2) return this.threeOrTwo(temp, first, lastIndex);
-    
-    return 'Error!';
+
+    return "Error!";
   }
 
   //evaluates for tuples
   confirmTuple(x, index, arr) {
-    const bounds = (arr.length) - 1;
+    const bounds = arr.length - 1;
     const target = arr[index + 1];
 
-    if (index < bounds) return (x.value === target.value);
-  
+    if (index < bounds) return x.value === target.value;
+
     return false;
   }
 
@@ -595,14 +591,13 @@ class Hand extends Array{
       if (mark === 2) {
         hand.push(hand.shift());
         hand.push(hand.shift());
-      }
-      else if (mark === 1) {
+      } else if (mark === 1) {
         const item = hand.shift();
         hand.splice(3, 0, item);
       }
-      return 'three of a kind';
+      return "three of a kind";
     }
-    
+
     const pair1 = hand.splice(firstIndex, 2);
     const pair2 = hand.splice(lastIndex - 2, 2);
     hand.unshift(pair2[1]);
@@ -610,14 +605,14 @@ class Hand extends Array{
     hand.unshift(pair1[1]);
     hand.unshift(pair1[0]);
 
-    return 'two pair';
+    return "two pair";
   }
 
   //evaluates three of a kind from map of pair locations in array
   three(map) {
     const index = map.indexOf(true);
     if (map[index] === map[index + 1]) {
-      return 'three of a kind';
+      return "three of a kind";
     }
 
     return null;
@@ -627,7 +622,6 @@ class Hand extends Array{
   //   while (this)
   // }
 }
-
 
 // class Deck extends Array {
 //   constructor() {
@@ -729,8 +723,8 @@ class Hand extends Array{
 
 //           while (!current) {
 //               current = this.deck.order.pop();
-//           } 
-          
+//           }
+
 //           player.hand.cards.push(current);
 //           player.hand.pocket.push(current);
 //       }
@@ -749,20 +743,20 @@ class Hand extends Array{
 
 //   evaluate() {
 //       this.tableOrder.forEach((x)=>x.hand.evaluate());
-      
+
 //       return this;
 //   }
 
 //   evaluation(x) {
 //       let copy = x.hand.cards.slice();
 //       let community = this.round[this.round.length - 1].community.slice();
-      
+
 //       while (community.length) {
 //           copy.push(community.pop());
 //       }
 
 //       const variations = this.iterator(copy);
-      
+
 //       const hands = [];
 //       while (hands.length < variations.length) {
 //           hands.push(new Hand());
@@ -801,7 +795,7 @@ class Hand extends Array{
 //       const rank = hands.indexOf(a.hand) - hands.indexOf(b.hand);
 //       let compare = 0;
 //       let i = 0;
-      
+
 //       if (rank) {
 //           return rank;
 //       }
@@ -809,14 +803,14 @@ class Hand extends Array{
 //       while (i < 4 && compare === 0) {
 //           compare = quants[b.cards[i].value] - quants[a.cards[i].value];
 //           i++;
-//       }   
-          
+//       }
+
 //       return compare;
 //   }
-  
+
 //   rank() {
 //       let ranking = this.tableOrder.slice();
-      
+
 //       ranking.sort(this.compare);
 //       this.roundWinner(ranking[0].name);
 
@@ -835,11 +829,10 @@ class Hand extends Array{
 //       while (i < 4 && compare === 0) {
 //           compare = quants[b.hand.cards[i].value] - quants[a.hand.cards[i].value];
 //           i++;
-//       }   
-          
+//       }
+
 //       return compare;
 //   }
-
 
 //   roundWinner(name) {
 //       const winner = this.table.find(x => x.name === name);
@@ -936,7 +929,7 @@ class Hand extends Array{
 //           let randCard = deck.splice(randomIndex, 1)[0];
 //           deck.unshift(randCard);
 //       }
-  
+
 //       return this;
 //   }
 
@@ -952,7 +945,7 @@ class Hand extends Array{
 //       return this;
 //   }
 
-//   //Empties deck array into two halves with split(), they are poured back 
+//   //Empties deck array into two halves with split(), they are poured back
 //   //into the deck with varying degrees of slop. Returns 'this'
 //   riffle() {
 //       const deck = this.deck;
@@ -971,13 +964,13 @@ class Hand extends Array{
 //       let randSplit = 24 + Math.floor(Math.random()*5);
 //       let otherHalf = [];
 //       let clean = [];
-  
+
 //       for (let i = 0; i < randSplit; i++) {
 //           otherHalf.push(deck.shift());
 //       }
-      
+
 //       this.transfer(deck, clean);
-      
+
 //       return [otherHalf, clean];
 //   }
 
@@ -989,10 +982,10 @@ class Hand extends Array{
 //           if (probability > 0.9 && half.length > 1) {
 //               deck.push(half.pop());
 //               deck.push(half.pop());
-//           } 
+//           }
 //           else if (probability > 0.75 && half.length) {
 //               deck.push(half.pop());
-//           } 
+//           }
 //       }
 //   }
 
@@ -1004,18 +997,18 @@ class Hand extends Array{
 //       while(deck.length) {
 //           const max = deck.length;
 //           let randLength = Math.floor(Math.random() * 7) + 10;
-      
+
 //           (max > randLength) ? {}: randLength = max;
-      
+
 //           let target = deck.length - randLength;
-      
+
 //           for (let i = 0; i < randLength; i++) {
 //                temp.push(deck.splice(target, 1)[0]);
 //           }
 //       }
-      
+
 //       this.transfer(temp, deck);
-      
+
 //       return this;
 //   }
 
@@ -1036,8 +1029,6 @@ class Hand extends Array{
 
 // }
 
-
-
 // class Card {
 //   constructor(value, suit) {
 //       this.value = value;
@@ -1050,14 +1041,14 @@ class Hand extends Array{
 //       let display = symbols[this.suit];
 //       let conditional = this.value;
 //       let value;
-      
+
 //       if (conditional.length < 3) {
 //           value = conditional;
 //       }
 //       else {
 //           value = conditional[0];
 //       }
-      
+
 //       display += value;
 
 //       return String(display);
@@ -1069,7 +1060,7 @@ class Hand extends Array{
 //   //     let temp = this.value;
 //   //     let value;
 
-//   //     abbrv += temp.length < 3 ? value = temp : value = temp[0] 
+//   //     abbrv += temp.length < 3 ? value = temp : value = temp[0]
 
 //   //     return String(abbrv);
 //   // }
@@ -1079,7 +1070,7 @@ class Hand extends Array{
 //       const myCard = document.createElement('div');
 //       const text = document.createElement('span');
 //       this.id = idString;
-      
+
 //       myCard.className = 'card';
 //       myCard.id = idString;
 //       text.innerText = this.display;
@@ -1088,7 +1079,7 @@ class Hand extends Array{
 //       if ((this.suit[0]==='D') || (this.suit[0]==='H')) {
 //           myCard.style = 'color: red';
 //       }
-      
+
 //       return myCard;
 //   }
 
@@ -1099,7 +1090,7 @@ class Hand extends Array{
 //       this.chips = this.buildWallet();
 //       this.bet = [];
 //   }
-  
+
 //   buildWallet() {
 //       const wallet = [];
 //       const looper = (x, y) => {
@@ -1156,10 +1147,10 @@ class Hand extends Array{
 
 //       for (let i = this.chips.length - 1; i > 0; i--) {
 //           if (this.chips[i].value <= this.remainder(target, bet)) {
-//               bet.push(this.chips.splice(i, 1)[0]);     
+//               bet.push(this.chips.splice(i, 1)[0]);
 //           }
 //           if (this.remainder(target, bet) === 0) break;
-//       }   
+//       }
 
 //       return bet;
 //   }
@@ -1220,7 +1211,6 @@ class Hand extends Array{
 //       this.pot = [];
 //   }
 // }
-
 
 // class Quips {
 //   constructor(round) {

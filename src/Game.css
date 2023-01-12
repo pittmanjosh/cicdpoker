@@ -1,8 +1,15 @@
 div.avatar {
   height: 70px;
-  width: 70px; 
+  width: 70px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  border: 3px solid
+}
+
+div.avatar-user {
+  border: 3px solid red;
+}
+
+.avatar-opponent {
+  border: 3px solid black;
 }

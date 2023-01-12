@@ -9,7 +9,7 @@ export default function Quips(props) {
 }
 
 function phrase(props) {
-  const {players,community,roundRank,records,user} = props;
+  const {players,community,roundRank,records, user} = props;
 
   var content = "Click the button below to play Ferrel Poker!";
 
