@@ -5,7 +5,7 @@ export default function Image({ imgUrl, userClass }) {
       className={`avatar ${userClass}`}
       style={{
         backgroundImage: `url(${
-          process.env.NODE_ENV == "production" ? "/cicdpoker" : ""
+          process.env.NODE_ENV == "production" ? "/poker" : ""
         }${imgUrl})`,
       }}
     />
